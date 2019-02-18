@@ -359,6 +359,36 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/02/14/Vuex学习（一）/">
+            
+                <span>Vuex学习（一）</span>
+        </a>
+        <div class="abstract-content">
+            Vuex 概念 （两个 W —— Why &amp; What）What （这是啥？）Vuex 是用来管理 Vue 的所有组件的状态
+Why （为什么要用？）条件：开发大型单页应用，会出现多个视图组件依赖同一个状态，来自不同的视图的行为需要变更同一个状态。
+遇上以上情况，就要考虑使用 Vuex 了，它能把组建的共享状态抽取出来，当做一个全局单例模式进行管理。这样无论在何处改变了状态，都会通知到使用该状态的组件并做出相应的修改
+示例：
+import Vue from &#39;vue&#39;;
+import Vuex from &#39;vuex&#39;;
+
+Vue.use(Vuex)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/14</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/02/13/基于Vue的树形表格（一）/">
             
                 <span>基于Vue的树形表格（一）</span>
@@ -593,9 +623,16 @@ data: [
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 1
+        Total : 2
         </div>
         <!-- search  -->
         
@@ -608,6 +645,11 @@ data: [
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/14</span><a class="archive-post-title" href="/2019/02/14/Vuex学习（一）/">Vuex学习（一）</a>
+        </li>
     
     
         <li class="archive-post-item">

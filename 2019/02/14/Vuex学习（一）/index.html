@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>基于Vue的树形表格（一） · Nnzes&#39;s Studio</title>
+    <title>Vuex学习（一） · Nnzes&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">Nnzes&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">基于Vue的树形表格（一）</a>
+                <a href="#" class="post-name">Vuex学习（一）</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            基于Vue的树形表格（一）
+            Vuex学习（一）
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">340</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">460</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/02/13</span>
+                    <span class="post-intro-time">2019/02/14</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,139 +395,82 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <blockquote class="pullquote [class]"><p>虽然是一个慢吞吞的小废柴 但是还是要努力鸭<br>先立个 flag 做个基于<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">vue</a> 的 treeTable 组件</p>
-</blockquote>
-<h2 id="步骤分析"><a href="#步骤分析" class="headerlink" title="步骤分析"></a>步骤分析</h2><ul>
-<li><p>UI 设计</p>
-</li>
-<li><p>功能分析</p>
-</li>
-<li><p>data 格式</p>
-</li>
-<li><p>代码实现</p>
-</li>
-</ul>
-<hr>
-<h3 id="UI-设计"><a href="#UI-设计" class="headerlink" title="UI 设计"></a>UI 设计</h3><p>大概的效果图 这个样子吧<br><img src="/2019/02/13/基于Vue的树形表格（一）/treetable-ui.jpg" alt="treeTable样式"></p>
-<h3 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h3><ul>
-<li>列表展示</li>
-<li>折叠展示</li>
-<li>拖拽排序（maybe 做不出）</li>
-</ul>
-<h3 id="data-格式"><a href="#data-格式" class="headerlink" title="data 格式"></a>data 格式</h3><pre><code>//树形结构
-data: [
-        {
-          id: 1,
-          event: &quot;事件1&quot;,
-          timeLine: 50,
-          comment: &quot;无&quot;,
-          order: 101
-        },
-        {
-          id: 2,
-          event: &quot;事件2&quot;,
-          timeLine: 100,
-          comment: &quot;无&quot;,
-          order: 100,
-          children: [
-            {
-              id: 3,
-              event: &quot;事件3&quot;,
-              timeLine: 10,
-              comment: &quot;无&quot;,
-              order: 1001
-            },
-            {
-              id: 4,
-              event: &quot;事件4&quot;,
-              timeLine: 90,
-              comment: &quot;无&quot;,
-              order: 1000,
-              children: [
-                {
-                  id: 5,
-                  event: &quot;事件5&quot;,
-                  timeLine: 5,
-                  comment: &quot;无&quot;,
-                  order: 10002
-                },
-                {
-                  id: 6,
-                  event: &quot;事件6&quot;,
-                  timeLine: 10,
-                  comment: &quot;无&quot;,
-                  order: 10000
-                },
-                {
-                  id: 7,
-                  event: &quot;事件7&quot;,
-                  timeLine: 75,
-                  comment: &quot;无&quot;,
-                  order: 10003,
-                  children: [
-                    {
-                      id: 8,
-                      event: &quot;事件8&quot;,
-                      timeLine: 50,
-                      comment: &quot;无&quot;,
-                      order: 100031,
-                      children: [
-                        {
-                          id: 81,
-                          event: &quot;事件81&quot;,
-                          timeLine: 25,
-                          comment: &quot;xx&quot;,
-                          order: 1000312
-                        },
-                        {
-                          id: 82,
-                          event: &quot;事件82&quot;,
-                          timeLine: 5,
-                          comment: &quot;xx&quot;,
-                          order: 1000311
-                        },
-                        {
-                          id: 83,
-                          event: &quot;事件83&quot;,
-                          timeLine: 20,
-                          comment: &quot;xx&quot;,
-                          order: 1000310
-                        }
-                      ]
-                    },
-                    {
-                      id: 9,
-                      event: &quot;事件9&quot;,
-                      timeLine: 25,
-                      comment: &quot;无&quot;,
-                      order: 100030
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 10,
-          event: &quot;事件10&quot;,
-          timeLine: 50,
-          comment: &quot;无&quot;,
-          order: 89
-        }
-      ]
-</code></pre><p>还有一种全部展开的数组格式，就不放了（毕竟 we all know）</p>
-<hr>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>那就放在第二篇写吧</p>
+        <h2 id="Vuex-概念-（两个-W-——-Why-amp-What）"><a href="#Vuex-概念-（两个-W-——-Why-amp-What）" class="headerlink" title="Vuex 概念 （两个 W —— Why &amp; What）"></a>Vuex 概念 （两个 W —— Why &amp; What）</h2><h3 id="What-（这是啥？）"><a href="#What-（这是啥？）" class="headerlink" title="What （这是啥？）"></a>What （这是啥？）</h3><p>Vuex 是用来管理 Vue 的所有组件的状态</p>
+<h3 id="Why-（为什么要用？）"><a href="#Why-（为什么要用？）" class="headerlink" title="Why （为什么要用？）"></a>Why （为什么要用？）</h3><p>条件：开发大型单页应用，会出现多个视图组件依赖同一个状态，来自不同的视图的行为需要变更同一个状态。</p>
+<p>遇上以上情况，就要考虑使用 Vuex 了，它能把组建的共享状态抽取出来，当做一个全局单例模式进行管理。这样无论在何处改变了状态，都会通知到使用该状态的组件并做出相应的修改</p>
+<p>示例：</p>
+<pre><code>import Vue from &#39;vue&#39;;
+import Vuex from &#39;vuex&#39;;
 
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        }
+    }
+})
+</code></pre><p>每一个 <font color="#006600">Vuex</font> 应用就是一个 store，在 store 中包含组件共享<strong>状态</strong> <font color="#dd0000">state</font> 和改变状态的<strong>方法</strong> <font color="#dd0000">mutations</font> 。</p>
+<p>注意：只能通过 <font color="#dd0000">mutations</font> 改变 store 的 <font color="#dd0000">state</font> 的状态，不能通过 <font color="#dd0000">=</font> 直接赋值改变,因为不通过 <font color="#dd0000">mutations</font> ,状态不会同步。</p>
+<p>使用 <font color="#dd0000">store.commit</font> 方法触发 <font color="#dd0000">mutations</font> 改变 <font color="#dd0000">state</font> :</p>
+<pre><code>store.commit(&#39;increment&#39;);
+
+console.log(store.state.count) // 1
+</code></pre><h2 id="Vuex-的使用"><a href="#Vuex-的使用" class="headerlink" title="Vuex 的使用"></a>Vuex 的使用</h2><p>如果希望 Vuex 状态更新，相应的 Vue 组件也得到更新，最简单的方法就是在 <font color="#dd0000">computed</font> （计算属性）获取 <font color="#dd0000">state</font></p>
+<ul>
+<li>全局状态（每个使用 Vuex 的组件都要引入，直接操作全局状态的 <font color="#dd0000">store.state.count</font>）</li>
+</ul>
+<pre><code>// Counter 组件
+const Counter = {
+    template: `&lt;div&gt;{{ count }}&lt;/div&gt;`,
+    computed: {
+        count () {
+            return store.state.count;
+        }
+    }
+}
+</code></pre><ul>
+<li>注入使用（从根组件注入到每一个子组件中，在子组件中通过 <font color="#dd0000"> this.\$store </font>）</li>
+</ul>
+<pre><code>// 根组件
+import Vue from &#39;vue&#39;;
+import Vuex from &#39;vuex&#39;;
+
+Vue.use(Vuex);
+const app = new Vue({
+    el: &#39;#app&#39;,
+    store,
+    components: {
+        Counter
+    },
+    template: `
+        &lt;div class=&quot;app&quot;&gt;
+            &lt;counter&gt;&lt;/counter&gt;
+        &lt;/div&gt;
+    `
+})
+</code></pre><pre><code>// Counter 组件
+const Counter = {
+    template: `&lt;div&gt;{{ count }}&lt;/div&gt;`,
+    computed: {
+        count () {
+            return this.$store.state.count
+        }
+    }
+}
+</code></pre><h3 id="mapState-函数"><a href="#mapState-函数" class="headerlink" title="mapState 函数"></a>mapState 函数</h3>
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="https://beatricezh.github.io">Nnzes</a>
-            </p><p>原文链接：<a href="https://beatricezh.github.io/2019/02/13/基于Vue的树形表格（一）/">https://beatricezh.github.io/2019/02/13/基于Vue的树形表格（一）/</a>
-            </p><p>发表日期：<a href="https://beatricezh.github.io/2019/02/13/基于Vue的树形表格（一）/">February 13th 2019, 4:18:51 pm</a>
-            </p><p>更新日期：<a href="https://beatricezh.github.io/2019/02/13/基于Vue的树形表格（一）/">February 13th 2019, 6:01:22 pm</a>
+            </p><p>原文链接：<a href="https://beatricezh.github.io/2019/02/14/Vuex学习（一）/">https://beatricezh.github.io/2019/02/14/Vuex学习（一）/</a>
+            </p><p>发表日期：<a href="https://beatricezh.github.io/2019/02/14/Vuex学习（一）/">February 14th 2019, 11:36:58 am</a>
+            </p><p>更新日期：<a href="https://beatricezh.github.io/2019/02/14/Vuex学习（一）/">February 18th 2019, 10:24:28 am</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -535,13 +478,13 @@ data: [
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/02/14/Vuex学习（一）/" title="Vuex学习（一）">
-                    <div class="nextTitle">Vuex学习（一）</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/02/13/基于Vue的树形表格（一）/" title="基于Vue的树形表格（一）">
+                    <div class="prevTitle">基于Vue的树形表格（一）</div>
+                </a>
             
         </li>
     </ul>
@@ -656,7 +599,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤分析"><span class="toc-number">1.</span> <span class="toc-text">步骤分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UI-设计"><span class="toc-number">1.1.</span> <span class="toc-text">UI 设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能分析"><span class="toc-number">1.2.</span> <span class="toc-text">功能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-格式"><span class="toc-number">1.3.</span> <span class="toc-text">data 格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.4.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex-概念-（两个-W-——-Why-amp-What）"><span class="toc-number">1.</span> <span class="toc-text">Vuex 概念 （两个 W —— Why &amp; What）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-（这是啥？）"><span class="toc-number">1.1.</span> <span class="toc-text">What （这是啥？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-（为什么要用？）"><span class="toc-number">1.2.</span> <span class="toc-text">Why （为什么要用？）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex-的使用"><span class="toc-number">2.</span> <span class="toc-text">Vuex 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mapState-函数"><span class="toc-number">2.1.</span> <span class="toc-text">mapState 函数</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
